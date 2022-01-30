@@ -1,0 +1,121 @@
+.mainbody {
+    width: 100%;
+}
+.dboard {
+    width: 100%;
+    align-items: center;
+}
+.pts {
+    font-weight: 600;
+}
+
+
+.gameopt {
+    /*position: absolute;*/
+    background-color: #444;
+    padding: 15px;
+    box-sizing: border-box;
+    /*display: none;*/
+    color: #f1d5d5;
+    border: 3px solid white;
+}
+
+.lbl-column {
+    display: inline-block;
+    width: 50%;
+    text-align: right;
+}
+
+.players {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.player {
+    width: 200px;
+}
+
+.player .container {
+    margin: 3px;
+    border: 1px solid gray;
+    background-color: #efefef;
+    min-height: 88px;
+}
+
+.player .throws {
+    text-align: center;
+    line-height: 100%;
+    height: 1.3em;
+    margin: 4px 0;
+    display: flex;
+    width: 25%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    float: left;
+    box-sizing: border-box;
+    padding-left: 4px;
+}
+
+.player .throw {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2px 0;
+    margin: 2px 0;
+    border: 2px solid #1b1b1b;
+    height: 1.4em;
+}
+
+.player .name {
+    width: 75%;
+    float: left;
+}
+
+.player .name span {
+    display: none;
+}
+
+.player .name input {
+    border: none;
+    font-size: 1.2em;
+    text-align: center;
+    width: 100%;
+    background: rgba(0,0,0,0);
+}
+
+
+.player .scores-container {
+    float: left;
+    width: 75%;
+}
+
+.player .scores {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    font-weight: normal;
+    font-size: 1.0em;
+    line-height: 1.6em;
+}
+
+.player .remaining {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+.current .container{
+    background-color: #f9c24b;
+}
+
+.winner .container{
+    background-color: #89e65e;
+}
+
+img {
+    width:100%;
+    object-fit: cover;
+    size: auto;
+}
