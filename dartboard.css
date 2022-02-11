@@ -1,21 +1,97 @@
-.mainbody {
-    width: 100%;
+
+html, body {
+    margin: 0;
+    padding: 0;
 }
+
+.mainpage {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+border: 0px solid gray;
+height: calc(100vh - 0em);
+position: relative;
+margin-top: 0px;
+margin-left: 0em;
+margin-right: 0em;
+margin-bottom: 0em;
+}
+.row {
+display: flex;
+}
+.row .scoring:last-child {
+margin-left: auto;
+}
+/* .row:last-child .scoring {
+align-self: flex-end;
+} */
+
+.mainbody {
+border: 1px solid #FF9999;
+padding: 0px;
+width: 60%;
+height: 5em;
+height: auto;
+}
+
+.scoring {
+border: 1px solid #FF9999;
+padding: 0px;
+width: 40%;
+height: 5em;
+height: auto;
+}
+
+@media all and (orientation:landscape) {
+.scoring:nth-child(even) {
+    right: 0;
+}
+/*nth-last-child(-n+2) - select 2 last items from the parent*/
+.scoring:nth-last-child(-n+2) {
+    bottom: 0;
+}
+
+}
+@media all and (orientation:portrait) {
+.row {
+    flex-direction: column;
+}
+.row .scoring:last-child {
+    margin-left: 0;
+}
+.row:last-child .scoring {
+    align-self: stretch;
+}
+.mainbody {
+    position: relative;
+    flex: 1;
+    align-self: stretch;
+    width: auto;
+}
+.scoring {
+    position: relative;
+    flex: 1;
+    align-self: stretch;
+    width: auto;
+}
+}
+#dreport {
+font-size: 0.76em;
+}
+
 .dboard {
     width: 100%;
     align-items: center;
 }
 .pts {
-    font-weight: 600;
+    font-weight: 400;
 }
 
 
 .gameopt {
-    /*position: absolute;*/
     background-color: #444;
     padding: 15px;
     box-sizing: border-box;
-    /*display: none;*/
     color: #f1d5d5;
     border: 3px solid white;
 }
@@ -40,7 +116,7 @@
     margin: 3px;
     border: 1px solid gray;
     background-color: #efefef;
-    min-height: 88px;
+    min-height: 5.2em;
 }
 
 .player .throws {

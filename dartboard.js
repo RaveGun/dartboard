@@ -108,6 +108,7 @@ function onBoardClick(e){
             if(currentPlayerRemaining == 0) {
                 /* end of game */
                 playerContainer.className = "player winner";
+				gameInProgress = false;
             } else if(++currentPlayerThrow > 2) {
                 currentPlayerThrow = 0;
                 switchPlayer();

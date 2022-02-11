@@ -9,32 +9,38 @@
     <script src="dartboard.js" type="text/javascript"></script>
 </head>
 <body>
-    <div class="mainbody">
-        <div class="dboard">
-            <img id="scheibe" src="dartboard.svg">
+    <div class="mainpage">
+        <div class="row">
+            <div class="mainbody">
+                <div class="dboard">
+                    <img id="scheibe" src="dartboard.svg">
+                </div>
+            </div>
+            <div class="scoring">
+                <div class="gameopt">
+                    <label>
+                        <span class="lbl-column">Players:</span>
+                        <select id="players-total">
+                            <option value="2" selected="selected">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                        </select>
+                    </label>
+                    <div>
+                        <span class="lbl-column"></span>
+                        <button id="cta-start" type="button">Start</button>
+                    </div>
+                </div>
+                <div class="players" id="players-area">
+                </div>
+                <div class="score" id=scorevalue>
+                    <p id="points" class="pts">Pts</p>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="gameopt">
-        <label>
-            <span class="lbl-column">Players:</span>
-            <select id="players-total">
-                <option value="2" selected="selected">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-            </select>
-        </label>
-        <div>
-            <span class="lbl-column"></span>
-            <button id="cta-start" type="button">Start</button>
-        </div>
-    </div>
-    <div class="players" id="players-area">
-    </div>
-    <div class="score" id=scorevalue>
-        <p id="points" class="pts">Pts</p>
     </div>
     <script type="text/javascript">
         window.addEventListener("mousemove", onBoardMove);
