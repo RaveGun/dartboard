@@ -1,4 +1,5 @@
 var points = 0;
+var double = false;
 var gameInProgress = false;
 var currentPlayerNum = 0;
 var currentPlayerThrow = 0;
@@ -6,6 +7,7 @@ var currentPlayerRemaining = 0;
 var currentPlayerPoints = 0;
 var currentRound = 0;
 var playersTotal = 2;
+var bustRollback = 0;
 
 var $currentPlayer = null;
 var $activePlayer = null;
@@ -75,6 +77,11 @@ function onBoardMove(e)
         for (let index = 0; index < prRanges.length; index++) {
             if( (distval > prRanges[index][2]) && (distval <= prRanges[index][3]) ) {
                 points = (points * prRanges[index][0]) + prRanges[index][1];
+                if(prRanges[index][0] == 2) {
+                    double = true;
+                } else {
+                    double = false;
+                }
                 break;
             }
         }
@@ -105,16 +112,25 @@ function onBoardClick(e){
             playerScore.innerText = currentPlayerPoints;
             playerThrow.innerText = points;
 
-            if(currentPlayerRemaining == 0) {
-                /* end of game */
+            if((currentPlayerRemaining == 0) && (double == true)){
+                /** END OF GAME */
                 playerContainer.className = "player winner";
 				gameInProgress = false;
+            } else if(currentPlayerRemaining <= 1) {
+                /** BUST */
+                playerRemaining.innerText = bustRollback;
+                currentPlayerThrow = 0;
+                switchPlayer();
             } else if(++currentPlayerThrow > 2) {
+                /** NEXT PLAYER */
                 currentPlayerThrow = 0;
                 switchPlayer();
             }
         }
         else {
+            /** BUST */
+            playerRemaining.innerText = bustRollback;
+            currentPlayerThrow = 0;
             switchPlayer();
         }
     }
@@ -128,6 +144,9 @@ function onBoardClick(e){
         /* next player class */
         playerContainer = document.getElementById("player"+currentPlayerNum);
         playerContainer.className = "player current";
+
+        var playerRemaining = document.getElementById("remaining"+currentPlayerNum);
+        bustRollback = parseInt(playerRemaining.innerText);
 
         for(var i=0; i<=2; i++) {
             playerThrow = document.getElementById("throw"+currentPlayerNum+i);
