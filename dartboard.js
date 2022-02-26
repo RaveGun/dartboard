@@ -99,10 +99,12 @@ function onBoardClick(e){
         var playerRemaining = document.getElementById("remaining"+currentPlayerNum);
         var playerScore = document.getElementById("score"+currentPlayerNum);
         var playerThrow = document.getElementById("throw"+currentPlayerNum+currentPlayerThrow);
-        
+        var finishesArea = document.getElementById("finishes");
+
         currentPlayerRemaining = parseInt(playerRemaining.innerText);
         currentPlayerPoints = parseInt(playerScore.innerText);
 
+        /** Calculate scoring */
         if(currentPlayerRemaining >= points)
         {
             currentPlayerRemaining -= points;
@@ -111,6 +113,8 @@ function onBoardClick(e){
             playerRemaining.innerText = currentPlayerRemaining;
             playerScore.innerText = currentPlayerPoints;
             playerThrow.innerText = points;
+
+            findFinishes(currentPlayerRemaining);
 
             if((currentPlayerRemaining == 0) && (double == true)){
                 /** END OF GAME */
@@ -133,25 +137,53 @@ function onBoardClick(e){
             currentPlayerThrow = 0;
             switchPlayer();
         }
+
     }
+    
     function switchPlayer() {
         /* modifiy current player class */
         playerContainer.className = "player";
         /* switch player */
         currentPlayerNum++;
         currentPlayerNum %= playersTotal;
-    
+        
         /* next player class */
         playerContainer = document.getElementById("player"+currentPlayerNum);
         playerContainer.className = "player current";
-
+        
         var playerRemaining = document.getElementById("remaining"+currentPlayerNum);
         bustRollback = parseInt(playerRemaining.innerText);
-
+        
         for(var i=0; i<=2; i++) {
             playerThrow = document.getElementById("throw"+currentPlayerNum+i);
             playerThrow.innerText = "";
         }
+
+        /** possible finishes  */
+        currentPlayerRemaining = parseInt(playerRemaining.innerText);
+        findFinishes(currentPlayerRemaining);
+    }
+    
+    function findFinishes(points) {
+
+        finishesArea.innerHTML = "";
+
+        /** Find possible finishes */
+        finishes.forEach(combination => {
+            if(combination[0] == points) {
+                console.log(combination);
+                bl2ins = document.createElement('div');
+                bl2ins.className = "finishes";
+                bl2ins.innerHTML = '<div>' + 
+                    combination[1].toString().padStart(10) + '   '+
+                    combination[2].toString().padStart(10) + '   '+
+                    combination[3].toString().padStart(10) + '   '+
+                    '</div>';
+                finishesArea.appendChild(bl2ins);
+            } else {
+                //console.log(combination[0]);
+            }
+        });
     }
 }
 
