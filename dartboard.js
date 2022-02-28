@@ -5,7 +5,7 @@ var currentPlayerNum = 0;
 var currentPlayerThrow = 0;
 var currentPlayerRemaining = 0;
 var currentPlayerPoints = 0;
-var currentRound = 0;
+var currentRound = 1;
 var playersTotal = 2;
 var bustRollback = 0;
 
@@ -147,6 +147,12 @@ function onBoardClick(e){
         currentPlayerNum++;
         currentPlayerNum %= playersTotal;
         
+        if(currentPlayerNum == 0) {
+            currentRound++;
+            var roundsPlayed = document.getElementById("roundsplayed");
+            roundsPlayed.innerText = currentRound;
+        }
+
         /* next player class */
         playerContainer = document.getElementById("player"+currentPlayerNum);
         playerContainer.className = "player current";
@@ -197,6 +203,10 @@ function startGame() {
         playerslist.innerHTML = "";
     }
     gameInProgress = true;
+    currentRound = 1;
+    var roundsPlayed = document.getElementById("roundsplayed");
+    roundsPlayed.innerText = currentRound;
+
     startButton.textContent = "ReStart"
     playersTotal = document.getElementById("players-total").value;
 

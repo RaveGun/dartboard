@@ -42,6 +42,23 @@ height: 5em;
 height: auto;
 }
 
+
+.roundsplayed {
+    position: relative;
+    float: left;
+    font-size: large;
+    z-index: 2;
+}
+
+.timeplayed{
+    position: relative;
+    float: right;
+    font-size: large;
+    z-index: 2;
+}
+
+
+
 @media all and (orientation:landscape) {
 .scoring:nth-child(even) {
     right: 0;
