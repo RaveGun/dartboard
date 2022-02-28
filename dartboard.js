@@ -198,10 +198,7 @@ function startGame() {
 
     var startButton = document.getElementById("cta-start");
     var playerslist = document.getElementById("players-area");
-    if(gameInProgress == true)
-    {
-        playerslist.innerHTML = "";
-    }
+    playerslist.innerHTML = "";
     gameInProgress = true;
     currentRound = 1;
     var roundsPlayed = document.getElementById("roundsplayed");
