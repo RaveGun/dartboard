@@ -6,6 +6,8 @@ var currentPlayerThrow = 0;
 var currentPlayerRemaining = 0;
 var currentPlayerPoints = 0;
 var currentRound = 1;
+var startTime = 0;
+var playingTimeout = 0;
 var playersTotal = 2;
 var bustRollback = 0;
 
@@ -120,6 +122,7 @@ function onBoardClick(e){
                 /** END OF GAME */
                 playerContainer.className = "player winner";
 				gameInProgress = false;
+                stopClockOnFinish();
             } else if(currentPlayerRemaining <= 1) {
                 /** BUST */
                 playerRemaining.innerText = bustRollback;
@@ -191,8 +194,34 @@ function onBoardClick(e){
             }
         });
     }
+
+    
+    
 }
 
+function displayClock() {
+    var playTime = new Date().getTime() - startTime;
+    var timeplayed = document.getElementById("timeplayed");
+    timeplayed.innerText = msToTime(playTime);
+    playingTimeout = setTimeout(displayClock, 1000); 
+}
+
+function stopClockOnFinish() {
+    console.log("This shall stop");
+    clearTimeout(playingTimeout);
+}
+
+function msToTime(duration) {
+    seconds = Math.floor((duration / 1000) % 60),
+    minutes = Math.floor((duration / (1000 * 60)) % 60),
+    hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+  
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+  
+    return hours + ":" + minutes + ":" + seconds;
+  }
 
 function startGame() {
 
@@ -200,6 +229,12 @@ function startGame() {
     var playerslist = document.getElementById("players-area");
     playerslist.innerHTML = "";
     gameInProgress = true;
+
+    var today = new Date();
+    startTime = today.getTime();
+    console.log(startTime);
+    displayClock();
+
     currentRound = 1;
     var roundsPlayed = document.getElementById("roundsplayed");
     roundsPlayed.innerText = currentRound;
